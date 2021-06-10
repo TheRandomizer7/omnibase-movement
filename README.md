@@ -25,8 +25,8 @@ chmod u+x final_hackathon.launch
 ```
 
 There are two launch files.
-1) final_hackathon_realistic.launch - This file runs RRT path planner which takes a lot less time to run but, creates long paths. But, if the robot is disturbed, it stops following the old path until a new path is planned. Meanwhile, the path planner plans a new path for it to follow. So, the robot can be disturbed, rotated, moved from anywhere to anywhere, as long as the goal is reachable, it will find it's path.
-2) final_hackathon.launch - This file runs the RRT* path planner which takes a long time to run but, creates a smooth path for the robot to follow. However, the robot is prone to disturbances and will not create a new path or follow the old path if it's disturbed from it's position.
+1) final_hackathon_realistic.launch - This file runs RRT path planner which takes a lot less time to run but, creates long paths. But, if the robot is disturbed, it stops following the old path until a new path is planned. Meanwhile, the path planner plans a new path for it to follow. So, the robot can be disturbed, rotated, moved from anywhere to anywhere, as long as the goal is reachable, it will find it's path. (runs the nodes, obstacle_detector.py, path_planner_RRT.py, controller.py)
+2) final_hackathon.launch - This file runs the RRT* path planner which takes a long time to run but, creates a smooth path for the robot to follow. However, the robot is prone to disturbances and will not create a new path or follow the old path if it's disturbed from it's position. (runs the nodes, obstacle_detector.py, path_planner.py, controller.py)
 
 To run the final_hackathon_realistic.launch:
 ```
