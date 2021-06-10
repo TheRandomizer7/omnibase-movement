@@ -146,7 +146,7 @@ obstacle_sub = rospy.Subscriber('obstacle_coords', Coordinates, ObstacleCoordina
 sub = rospy.Subscriber('odom', Odometry, odomCoordinates)
 vel_sub = rospy.Subscriber('cmd_vel', Twist, SubscribeVelocities)
 
-rate = rospy.Rate(1)
+rate = rospy.Rate(2)
 
 #obstacles.append(Figures([[20, 100], [23, 100], [23, 30], [20, 30], [20, 100]]))
 #obstacles.append(Figures([[40, 70], [43, 70], [43, 0], [40, 0], [40, 70]]))
