@@ -103,8 +103,8 @@ def odomCoordinates(msg):
 
 def SubscribeVelocities(msg):
     #print(str(msg.linear.x) + ", " + str(msg.linear.y))
-    robot.linear_x = round(msg.linear.x, 2)
-    robot.linear_y = round(msg.linear.y, 2)
+    robot.linear_x = round(msg.linear.x, 3)
+    robot.linear_y = round(msg.linear.y, 3)
 
 #Classes
 class Figures:
@@ -160,7 +160,7 @@ goal = [6, 6]
 #goal = [goal_x, goal_y]
 
 while (not rospy.is_shutdown()):
-    if(robot.linear_x == 0.0 and robot.linear_y == 0.0):
+    if(robot.linear_x == 0.000 and robot.linear_y == 0.000):
         nodes_in_tree = []
         nodes_in_tree.append(Nodes(point_of_origin[0], point_of_origin[1], 0, 0))
         counter = 0
