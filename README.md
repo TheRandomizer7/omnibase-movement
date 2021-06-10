@@ -42,3 +42,7 @@ Code structure:
 2) path_planner.py - plans a path from the start point to the goal point using RRT* path planning algorithm by sampling 5000 points. It plans the path only once and keeps on publishing the same path. (subscribing to topics obstacle_coords and odom. publishing to topic target_path)
 3) path_planner_RRT.py - plans a path from the position of the robot to the goal using RRT algorithm. It checks whether the robot is at rest, once every 2 seconds and if the robot is at rest, it plans a path. (subscribing to topics obstacle_coords, odom and cmd_vel. publishing to topic target_path)
 4) controller.py - it controls the robot based on the path published by the path_planner. If it detects a sudden change in position or if the robot reaches the goal. It stops the robot completely and waits for a new path to be planned. (subscribing to topics target_path and odom. publishing to topic cmd_vel)
+
+Bag files:
+1) final_hackathon_realistic.bag - bag file of final_hackathon_realistic.launch running.
+2) final_hackathon.bag - bag file of final_hackathon.launch running.
