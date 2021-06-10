@@ -44,5 +44,8 @@ Code structure:
 4) controller.py - it controls the robot based on the path published by the path_planner. If it detects a sudden change in position or if the robot reaches the goal. It stops the robot completely and waits for a new path to be planned. (subscribing to topics target_path and odom. publishing to topic cmd_vel)
 
 Bag files:
-1) final_hackathon_realistic.bag - bag file of final_hackathon_realistic.launch running.
-2) final_hackathon.bag - bag file of final_hackathon.launch running.
+1) final_hackathon_realistic.bag - bag file of a sample run of final_hackathon_realistic.launch.
+2) final_hackathon.bag - bag file of a sample run of final_hackathon.launch.
+
+Note: 
+To change the bounds of the plane where points are sampled, number of points sampled and the goal point, you need to change the variables in the planners (path_planner.py and path_planner_RRT.py), bounds_of_plane, points_to_sample and goal respectively.
