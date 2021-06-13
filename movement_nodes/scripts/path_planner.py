@@ -21,13 +21,6 @@ def CheckIfValidPoint(point, node_to_connect):
     else:
         is_valid = False
 
-        #for j in range(len(obj.coord_list) - 1):
-        #    line_a = LineString([point, (node_to_connect.x_coord, node_to_connect.y_coord)])
-        #    line_b = LineString([(obj.coord_list[j][0], obj.coord_list[j][1]), (obj.coord_list[j+1][0], obj.coord_list[j+1][1])])
-        #    if(line_a.intersects(line_b)):
-        #        is_valid = False
-        #        break
-
     return is_valid
 
 def AddPointToTree(rand_point, parent_index, min_node_dist, found_goal, search_radius):
@@ -136,16 +129,8 @@ sub = rospy.Subscriber('odom', Odometry, odomCoordinates)
 
 rate = rospy.Rate(1)
 
-#obstacles.append(Figures([[20, 100], [23, 100], [23, 30], [20, 30], [20, 100]]))
-#obstacles.append(Figures([[40, 70], [43, 70], [43, 0], [40, 0], [40, 70]]))
-#obstacles.append(Figures([[60, 100], [63, 100], [63, 30], [60,30], [60, 100]]))
-
-#goal = Figures([[80, 52], [84, 52], [84, 48], [80, 48], [80, 52]])
-
 goal = [6, 6]
-#goal_x = input("Enter x coordinate of goal: ")
-#goal_y = input("Enter y coordinate of goal: ")
-#goal = [goal_x, goal_y]
+
 nodes_in_tree = []
 nodes_in_tree.append(Nodes(point_of_origin[0], point_of_origin[1], 0, 0))
 
