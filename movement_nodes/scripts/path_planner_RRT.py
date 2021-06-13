@@ -21,14 +21,7 @@ def CheckIfValidPoint(point, node_to_connect):
                 break
     else:
         is_valid = False
-
-        #for j in range(len(obj.coord_list) - 1):
-        #    line_a = LineString([point, (node_to_connect.x_coord, node_to_connect.y_coord)])
-        #    line_b = LineString([(obj.coord_list[j][0], obj.coord_list[j][1]), (obj.coord_list[j+1][0], obj.coord_list[j+1][1])])
-        #    if(line_a.intersects(line_b)):
-        #        is_valid = False
-        #        break
-
+        
     return is_valid
 
 def AddPointToTree(rand_point, parent_index, min_node_dist, found_goal, search_radius):
@@ -102,7 +95,6 @@ def odomCoordinates(msg):
     robot.y_coord = msg.pose.pose.position.y
 
 def SubscribeVelocities(msg):
-    #print(str(msg.linear.x) + ", " + str(msg.linear.y))
     robot.linear_x = round(msg.linear.x, 3)
     robot.linear_y = round(msg.linear.y, 3)
 
@@ -148,16 +140,9 @@ vel_sub = rospy.Subscriber('cmd_vel', Twist, SubscribeVelocities)
 
 rate = rospy.Rate(0.5)
 
-#obstacles.append(Figures([[20, 100], [23, 100], [23, 30], [20, 30], [20, 100]]))
-#obstacles.append(Figures([[40, 70], [43, 70], [43, 0], [40, 0], [40, 70]]))
-#obstacles.append(Figures([[60, 100], [63, 100], [63, 30], [60,30], [60, 100]]))
-
 #goal = Figures([[80, 52], [84, 52], [84, 48], [80, 48], [80, 52]])
 
 goal = [6, 6]
-#goal_x = input("Enter x coordinate of goal: ")
-#goal_y = input("Enter y coordinate of goal: ")
-#goal = [goal_x, goal_y]
 
 while (not rospy.is_shutdown()):
     if(robot.linear_x == 0.000 and robot.linear_y == 0.000):
@@ -215,5 +200,4 @@ while (not rospy.is_shutdown()):
     msg.x_coords = target_path_x
     msg.y_coords = target_path_y
     pub.publish(msg)
-    #print(msg)
     rate.sleep()
