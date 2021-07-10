@@ -6,16 +6,16 @@ Overview of how the program works:
 1) final_hackathon_realistic.launch - When launched, the user is prompted to enter the goal coordinate and the path of the robot will be quickly planned due to the speed of RRT. If the controller detects a sudden change in position, it will stop the robot by changing it's velocity to 0, and the controller will stop following it's old path, until a new path is planned. When the velocity of the robot is 0, the planner detects that (checks once every 2 seconds), and plans and publishes a new path. The controller detects that the path that it was supposed to follow, has been changed and thus, it resumes following the new path. The controller also stops the robot when it has reached the final node of the path. The planner also detects that the final node has been reached and that the robot has stopped. After that, the planner prompts the user to enter a new goal coordinate.
 3) final_hackathon.launch - When launched, the user is prompted to enter the goal coordinate and the path of the robot takes a long time to plan because the planner uses RRT*, because of RRT* the path that the robot follows is very smooth which also causes the robot to reach it's goal faster. Also, the number of points sampled in RRT* is directly proportional to the area contained by the region in which points are sampled. This region can be controlled by the variable ```bounds_of_plane```. After the goal is reached, the controller as described above, stops the movement of the robot until a new path is planned. But since the planner is not designed to plan a new path, the robot never starts moving again. This also happens when the robot is suddenly moved, the controller stops, and the planner is unable to plan a new path. And, the user is not prompted to enter a new goal coordinate. The program has ended.
 
-Note:
-
-There are certain scenarios in which the program running the launch file final_hackathon_realistic.launch may fail. This happens when sometimes the robot is moved while it is following a path, this triggers an error advertising the topic /omnibase/joint_cmd and thus stopping the whole robot. Generally, there should be no error while the robot is moved and everything should work fine.
-
 [IMPORTANT]: 
 
 You will be prompted to specify the goal coordinates every time the launch files are run. After you enter the goal coordinates, the program performs certain checks to ensure that there will be no errors during the running of the program. If any one of the conditions is not fullfilled, you will be prompted to re-enter the goal coordinates. The following are the checks, that the program performs: 
 1) The goal should be such, that the robot does not collide with the obstacle (distance from the center of each cylindrical obstacle should exceed 7.0 units)
 2) The input you enter should be a float, string or non-numeric data is not permitted
 3) The goal should be confined to the ```bounds_of_plane``` variable in the code.
+
+Note:
+
+There are certain scenarios in which the program running the launch file final_hackathon_realistic.launch may fail. This happens when sometimes the robot is moved while it is following a path, this triggers an error advertising the topic /omnibase/joint_cmd and thus stopping the whole robot. Generally, there should be no error while the robot is moved and everything should work fine.
 
 Code structure: 
 1) obstacle_detector.py - publishes an array with the x-coordinates and y-coordinates of the centres of the cylindrical obstacles. These obstacles are fixed, so it just publishes the same array every single time. A little bit redundant since obstacles are not moving, but just to have a more usable code structure. (publishing to topic obstacle_coords)
