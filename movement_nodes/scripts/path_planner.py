@@ -3,6 +3,7 @@
 import random
 import math
 import rospy
+import time
 #import matplotlib.pyplot as plt
 
 from shapely.geometry import Point, Polygon, LineString
@@ -20,6 +21,18 @@ def CheckIfValidPoint(point, node_to_connect):
                 break
     else:
         is_valid = False
+
+    if(point[0] <= bounds_of_plane[0] or point[0] >= bounds_of_plane[2]):
+        is_valid = False
+    if(point[1] <= bounds_of_plane[1] or point[1] >= bounds_of_plane[3]):
+        is_valid = False
+
+        #for j in range(len(obj.coord_list) - 1):
+        #    line_a = LineString([point, (node_to_connect.x_coord, node_to_connect.y_coord)])
+        #    line_b = LineString([(obj.coord_list[j][0], obj.coord_list[j][1]), (obj.coord_list[j+1][0], obj.coord_list[j+1][1])])
+        #    if(line_a.intersects(line_b)):
+        #        is_valid = False
+        #        break
 
     return is_valid
 
@@ -78,6 +91,17 @@ def PlotTree(goal_index):
     
     return publish_array
 
+def CheckIfValidInput(user_input):
+    is_valid = True
+    goal = [0, 0]
+    try:
+        goal[0] = float(user_input[0])
+        goal[1] = float(user_input[1])
+    except:
+        is_valid = False
+    
+    return is_valid
+
 def ObstacleCoordinates(msg):
     global obstacles
     array = []
@@ -129,13 +153,37 @@ sub = rospy.Subscriber('odom', Odometry, odomCoordinates)
 
 rate = rospy.Rate(1)
 
-goal = [6, 6]
+#obstacles.append(Figures([[20, 100], [23, 100], [23, 30], [20, 30], [20, 100]]))
+#obstacles.append(Figures([[40, 70], [43, 70], [43, 0], [40, 0], [40, 70]]))
+#obstacles.append(Figures([[60, 100], [63, 100], [63, 30], [60,30], [60, 100]]))
 
+#goal = Figures([[80, 52], [84, 52], [84, 48], [80, 48], [80, 52]])
+
+goal = [6, 6]
+#goal_x = input("Enter x coordinate of goal: ")
+#goal_y = input("Enter y coordinate of goal: ")
+#goal = [goal_x, goal_y]
 nodes_in_tree = []
 nodes_in_tree.append(Nodes(point_of_origin[0], point_of_origin[1], 0, 0))
 
 while(obstacles == []):
     print("obstacle_detector not active.")
+
+time.sleep(5.0)
+print("\n\n\n\n\n")
+
+goal = [6, 6]
+user_input = ["goal1", "goal2"]
+
+while((not CheckIfValidPoint(goal, Nodes(goal[0], goal[1], 0, 0))) or (not CheckIfValidInput(user_input))):
+    print("Goal point is invalid, please try a different point.\n")
+    user_input[0] = str(input("Enter x coordinate of goal: "))
+    user_input[1] = str(input("Enter y coordinates of goal: "))
+    if(CheckIfValidInput(user_input)):
+        goal[0] = float(user_input[0])
+        goal[1] = float(user_input[1])
+
+print("Coordinates of goal are valid, planning path...")
 
 #Main loop of RRT
 while ((not found_goal) or (counter < points_to_sample)):

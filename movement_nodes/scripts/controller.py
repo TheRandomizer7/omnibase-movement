@@ -102,7 +102,7 @@ def plannerCoordinates(msg):
     
 def checkIfNodeReached(error, counter):
     if(error < 0.15):
-        if(not (round(target_path[counter][0], 2) == 0 and round(target_path[counter][1], 2) == 0)):
+        if(not (round(target_path[counter][0], 2) == 0 and round(target_path[counter][1], 2) == 0) and not(round(robot.linear_x, 2) == 0 and round(robot.linear_y, 2) == 0 )):
             print("Node reached. node_x = " + str(round(target_path[counter][0], 2)) + " node_y = " + str(round(target_path[counter][1], 2))+ " robot_x = " + str(round(robot.x_coord, 2)) + " robot_y = " + str(round(robot.y_coord, 2)))
         return True
     else:
@@ -122,7 +122,7 @@ rate = rospy.Rate(1/delta_time)
 while not rospy.is_shutdown():
     if(new_path):
         if(len(target_path) > 1):
-            counter = 1
+            counter = 0
         else:
             counter = 0
         stop_everything = False
