@@ -1,8 +1,14 @@
 # omnibase-movement
 
+This repository is a derived from the omnibase repository: https://github.com/ERC-BPGC/omnibase
+
 Overview of how the program works:
 1) final_hackathon_realistic.launch - When launched, the user is prompted to enter the goal coordinate and the path of the robot will be quickly planned due to the speed of RRT. If the controller detects a sudden change in position, it will stop the robot by changing it's velocity to 0, and the controller will stop following it's old path, until a new path is planned. When the velocity of the robot is 0, the planner detects that (checks once every 2 seconds), and plans and publishes a new path. The controller detects that the path that it was supposed to follow, has been changed and thus, it resumes following the new path. The controller also stops the robot when it has reached the final node of the path. The planner also detects that the final node has been reached and that the robot has stopped. After that, the planner prompts the user to enter a new goal coordinate.
-3) final_hackathon.launch - When launched, the user is prompted to enter the goal coordinate and the path of the robot takes a long time to plan because the planner uses RRT*, because of RRT* the path that the robot follows is very smooth which also causes the robot to reach it's goal faster. Also, the number of points sampled in RRT* is directly proportional to the area contained by the region in which points are sampled. This region can be controlled by the variable ```bounds_of_plane```. After the goal is reached, the controller as described above, stops the movement of the robot until a new path is planned. But since the planner is not designed to plan a new path, the robot never starts moving again. And, the user is not prompted to enter a new goal coordinate. The program has ended.
+3) final_hackathon.launch - When launched, the user is prompted to enter the goal coordinate and the path of the robot takes a long time to plan because the planner uses RRT*, because of RRT* the path that the robot follows is very smooth which also causes the robot to reach it's goal faster. Also, the number of points sampled in RRT* is directly proportional to the area contained by the region in which points are sampled. This region can be controlled by the variable ```bounds_of_plane```. After the goal is reached, the controller as described above, stops the movement of the robot until a new path is planned. But since the planner is not designed to plan a new path, the robot never starts moving again. This also happens when the robot is suddenly moved, the controller stops, and the planner is unable to plan a new path. And, the user is not prompted to enter a new goal coordinate. The program has ended.
+
+Note:
+
+There are certain scenarios in which the program running the launch file final_hackathon_realistic.launch may fail. This happens when sometimes the robot is moved while it is following a path, this triggers an error advertising the topic /omnibase/joint_cmd and thus stopping the whole robot. Generally, there should be no error while the robot is moved and everything should work fine.
 
 [IMPORTANT]: 
 
