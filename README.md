@@ -27,7 +27,24 @@ Code structure:
 
 Setup and running: 
 
-First make a workspace with a src directory. Clone this repository in the src directory of your workspace and run catkin_make as shown below.
+Install some dependencies (from omnibase repo, linked above): 
+```
+sudo apt install python-catkin-tools
+sudo apt install ros-noetic-joint-state-controller
+sudo apt install ros-noetic-effort-controllers
+sudo apt install ros-noetic-joint-trajectory-controller
+sudo apt install ros-noetic-position-controllers
+sudo apt install ros-noetic-velocity-controllers
+```
+Package installer from debian (from omnibase repo, linked above): 
+```
+sudo apt update
+sudo apt install ros-noetic-omnibase-control 
+sudo apt install ros-noetic-omnibase-gazebo 
+sudo apt install ros-noetic-omnibase-description
+```
+
+Make a workspace with a src directory. Clone this repository in the src directory of your workspace and run catkin_make as shown below.
 ```
 cd ~/<name of workspace>/src/
 git clone https://github.com/TheRandomizer7/omnibase-movement.git
