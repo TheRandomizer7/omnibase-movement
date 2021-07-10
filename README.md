@@ -4,6 +4,13 @@ Overview of how the program works:
 1) final_hackathon_realistic.launch - When launched, the user is prompted to enter the goal coordinate and the path of the robot will be quickly planned due to the speed of RRT. If the controller detects a sudden change in position, it will stop the robot by changing it's velocity to 0, and the controller will stop following it's old path, until a new path is planned. When the velocity of the robot is 0, the planner detects that (checks once every 2 seconds), and plans and publishes a new path. The controller detects that the path that it was supposed to follow, has been changed and thus, it resumes following the new path. The controller also stops the robot when it has reached the final node of the path. The planner also detects that the final node has been reached and that the robot has stopped. After that, the planner prompts the user to enter a new goal coordinate.
 3) final_hackathon.launch - When launched, the user is prompted to enter the goal coordinate and the path of the robot takes a long time to plan because the planner uses RRT*, because of RRT* the path that the robot follows is very smooth which also causes the robot to reach it's goal faster. Also, the number of points sampled in RRT* is directly proportional to the area contained by the region in which points are sampled. This region can be controlled by the variable ```bounds_of_plane```. After the goal is reached, the controller as described above, stops the movement of the robot until a new path is planned. But since the planner is not designed to plan a new path, the robot never starts moving again. And, the user is not prompted to enter a new goal coordinate. The program has ended.
 
+[IMPORTANT]: 
+
+You will be prompted to specify the goal coordinates every time the launch files are run. After you enter the goal coordinates, the program performs certain checks to ensure that there will be no errors during the running of the program. If any one of the conditions is not fullfilled, you will be prompted to re-enter the goal coordinates. The following are the checks, that the program performs: 
+1) The goal should be such, that the robot does not collide with the obstacle (distance from the center of each cylindrical obstacle should exceed 7.0 units)
+2) The goal should be in float format, string or non-numeric data is not permitted
+3) The goal should be confined to the ```bounds_of_plane``` variable in the code.
+
 Code structure: 
 1) obstacle_detector.py - publishes an array with the x-coordinates and y-coordinates of the centres of the cylindrical obstacles. These obstacles are fixed, so it just publishes the same array every single time. A little bit redundant since obstacles are not moving, but just to have a more usable code structure. (publishing to topic obstacle_coords)
 2) path_planner.py - plans a path from the start point to the goal point using RRT* path planning algorithm by sampling 5000 points. It plans the path only once and keeps on publishing the same path. (subscribing to topics, obstacle_coords and odom. publishing to topic, target_path)
@@ -11,13 +18,6 @@ Code structure:
 4) controller.py - it controls the robot based on the path published by the path_planner. If it detects a sudden change in position or if the robot reaches the goal. It stops the robot completely and waits for a new path to be planned. (subscribing to topics, target_path and odom. publishing to topic, cmd_vel)
 5) final_hackathon_realistic.launch - runs the nodes, obstacle_detector.py, path_planner_RRT.py, controller.py
 6) final_hackathon.launch - runs the nodes, obstacle_detector.py, path_planner.py, controller.py
-
-[IMPORTANT]: 
-
-You will be prompted to specify the goal coordinates every time the launch files are run. After you enter the goal coordinates, the program performs certain checks to ensure that there will be no errors during the running of the program. If any one of the conditions is not fullfilled, you will be prompted to re-enter the goal coordinates. The following are the checks, that the program performs: 
-1) The goal should be such, that the robot does not collide with the obstacle (distance from the center of each cylindrical obstacle should exceed 7.0 units)
-2) The goal should be in float format, string or non-numeric data is not permitted
-3) The goal should be confined to the ```bounds_of_plane``` variable in the code.
 
 Setup and running: 
 
