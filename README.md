@@ -13,10 +13,6 @@ You will be prompted to specify the goal coordinates every time the launch files
 2) The input you enter should be a float, string or non-numeric data is not permitted
 3) The goal should be confined to the ```bounds_of_plane``` variable in the code.
 
-Note:
-
-There are certain scenarios in which the program running the launch file final_hackathon_realistic.launch may fail. This happens when sometimes the robot is moved while it is following a path, this triggers an error advertising the topic /omnibase/joint_cmd and thus stopping the whole robot. Generally, there should be no error while the robot is moved and everything should work fine.
-
 Code structure: 
 1) obstacle_detector.py - publishes an array with the x-coordinates and y-coordinates of the centres of the cylindrical obstacles. These obstacles are fixed, so it just publishes the same array every single time. A little bit redundant since obstacles are not moving, but just to have a more usable code structure. (publishing to topic obstacle_coords)
 2) path_planner.py - plans a path from the start point to the goal point using RRT* path planning algorithm by sampling 5000 points. It plans the path only once and keeps on publishing the same path. (subscribing to topics, obstacle_coords and odom. publishing to topic, target_path)
