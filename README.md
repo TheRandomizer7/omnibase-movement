@@ -8,7 +8,7 @@ Overview of how the program works:
 
 You will be prompted to specify the goal coordinates every time the launch files are run. After you enter the goal coordinates, the program performs certain checks to ensure that there will be no errors during the running of the program. If any one of the conditions is not fullfilled, you will be prompted to re-enter the goal coordinates. The following are the checks, that the program performs: 
 1) The goal should be such, that the robot does not collide with the obstacle (distance from the center of each cylindrical obstacle should exceed 7.0 units)
-2) The goal should be in float format, string or non-numeric data is not permitted
+2) The input you enter should be a float, string or non-numeric data is not permitted
 3) The goal should be confined to the ```bounds_of_plane``` variable in the code.
 
 Code structure: 
