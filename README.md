@@ -5,7 +5,6 @@ Overview of how the program works:
 3) final_hackathon.launch - When launched, the user is prompted to enter the goal coordinate and the path of the robot takes a long time to plan because the planner uses RRT*, because of RRT* the path that the robot follows is very smooth which also causes the robot to reach it's goal faster. Also, the number of points sampled in RRT* is directly proportional to the area contained by the region in which points are sampled. This region can be controlled by the variable ```bounds_of_plane```. After the goal is reached, the controller as described above, stops the movement of the robot until a new path is planned. But since the planner is not designed to plan a new path, the robot never starts moving again. And, the user is not prompted to enter a new goal coordinate. The program has ended.
 
 [IMPORTANT]: 
-
 You will be prompted to specify the goal coordinates every time the launch files are run. After you enter the goal coordinates, the program performs certain checks to ensure that there will be no errors during the running of the program. If any one of the conditions is not fullfilled, you will be prompted to re-enter the goal coordinates. The following are the checks, that the program performs: 
 1) The goal should be such, that the robot does not collide with the obstacle (distance from the center of each cylindrical obstacle should exceed 7.0 units)
 2) The goal should be in float format, string or non-numeric data is not permitted
