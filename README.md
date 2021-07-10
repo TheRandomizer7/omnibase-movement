@@ -11,7 +11,7 @@ Overview of how the program works:
 You will be prompted to specify the goal coordinates every time the launch files are run. After you enter the goal coordinates, the program performs certain checks to ensure that there will be no errors during the running of the program. If any one of the conditions is not fullfilled, you will be prompted to re-enter the goal coordinates. The following are the checks, that the program performs: 
 1) The goal should be such, that the robot does not collide with the obstacle (distance from the center of each cylindrical obstacle should exceed 7.0 units)
 2) The input you enter should be a float, string or non-numeric data is not permitted
-3) The goal should be confined to the ```bounds_of_plane``` variable in the code.
+3) The goal should be confined to the ```bounds_of_plane``` variable in the code. ```bounds_of_plane``` for final_hackathon_realistic.launch is x: -10 to 10 and y: -10 to 10. ```bounds_of_plane``` for final_hackathon.launch is x: 0 to 10 and y: 0 to 10 (Both planes are rectangular).
 
 Code structure: 
 1) obstacle_detector.py - publishes an array with the x-coordinates and y-coordinates of the centres of the cylindrical obstacles. These obstacles are fixed, so it just publishes the same array every single time. A little bit redundant since obstacles are not moving, but just to have a more usable code structure. (publishing to topic obstacle_coords)
