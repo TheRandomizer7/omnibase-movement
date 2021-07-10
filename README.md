@@ -1,6 +1,6 @@
 # omnibase-movement
 
-This repository is a derived from the omnibase repository: https://github.com/ERC-BPGC/omnibase
+This repository is an extension of the omnibase repository: https://github.com/ERC-BPGC/omnibase
 
 Overview of how the program works:
 1) final_hackathon_realistic.launch - When launched, the user is prompted to enter the goal coordinate and the path of the robot will be quickly planned due to the speed of RRT. If the controller detects a sudden change in position, it will stop the robot by changing it's velocity to 0, and the controller will stop following it's old path, until a new path is planned. When the velocity of the robot is 0, the planner detects that (checks once every 2 seconds), and plans and publishes a new path. The controller detects that the path that it was supposed to follow, has been changed and thus, it resumes following the new path. The controller also stops the robot when it has reached the final node of the path. The planner also detects that the final node has been reached and that the robot has stopped. After that, the planner prompts the user to enter a new goal coordinate.
