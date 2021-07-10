@@ -55,4 +55,4 @@ Bag files:
 2) final_hackathon.bag - bag file of a sample run of final_hackathon.launch.
 
 Note: 
-To change the bounds of the plane where points are sampled, number of points sampled and the goal point, you need to change the variables in the planners (path_planner.py and path_planner_RRT.py), bounds_of_plane, points_to_sample and goal respectively.
+To change the bounds of the plane where points are sampled, number of points sampled, you need to change the variables in the planners (path_planner.py and path_planner_RRT.py), ```bounds_of_plane```, ```points_to_sample``` respectively
