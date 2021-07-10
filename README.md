@@ -27,7 +27,7 @@ Code structure:
 
 Setup and running: 
 
-Install some dependencies (from omnibase repo, linked above): 
+Install some dependencies (from omnibase repository: https://github.com/ERC-BPGC/omnibase): 
 ```
 sudo apt install python-catkin-tools
 sudo apt install ros-noetic-joint-state-controller
@@ -36,7 +36,7 @@ sudo apt install ros-noetic-joint-trajectory-controller
 sudo apt install ros-noetic-position-controllers
 sudo apt install ros-noetic-velocity-controllers
 ```
-Package installer from debian (from omnibase repo, linked above): 
+Package installer from debian (from omnibase repository: https://github.com/ERC-BPGC/omnibase): 
 ```
 sudo apt update
 sudo apt install ros-noetic-omnibase-control 
