@@ -166,7 +166,7 @@ class Robot:
 
 #Variables
 point_of_origin = [0, 0] #start point
-bounds_of_plane = [0, 0, 10, 10] #[-x, -y, x, y]
+bounds_of_plane = [-10, -10, 10, 10] #[-x, -y, x, y]
 fixed_distance = 0.25
 search_radius =0.35
 sample_goal = 3
